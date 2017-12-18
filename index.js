@@ -34,6 +34,8 @@ module.exports = function (config, windowParams) {
       state: generateRandomString(16)
     };
 
+    var redirectUriHost = nodeUrl.parse(urlParams.redirect_uri, true).host;
+
     if (opts.scope) {
       urlParams.scope = opts.scope;
     }
@@ -56,9 +58,14 @@ module.exports = function (config, windowParams) {
 
       function onCallback(url) {
         var url_parts = nodeUrl.parse(url, true);
+        var host = url_parts.host;
         var query = url_parts.query;
         var code = query.code;
         var error = query.error;
+
+        if (host != redirectUriHost) {
+          return
+        }
 
         if (error !== undefined) {
           reject(error);
