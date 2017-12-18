@@ -77,7 +77,9 @@ module.exports = function (config, windowParams) {
           resolve(code);
           authWindow.removeAllListeners('closed');
           setImmediate(function () {
-            authWindow.close();
+            try {
+              authWindow.close();
+            } catch(e) { /* do nothing */ }
           });
         }
       }
