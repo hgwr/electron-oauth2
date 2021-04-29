@@ -1,0 +1,30 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "01:00"
+    timezone: Asia/Tokyo
+  open-pull-requests-limit: 99
+  ignore:
+  - dependency-name: electron
+    versions:
+    - 11.2.1
+    - 11.2.2
+    - 11.2.3
+    - 11.3.0
+    - 12.0.0
+    - 12.0.1
+    - 12.0.2
+    - 12.0.4
+  - dependency-name: mocha
+    versions:
+    - 8.2.1
+    - 8.3.0
+    - 8.3.1
+  - dependency-name: xo
+    versions:
+    - 0.37.1
+    - 0.38.1
+    - 0.38.2
